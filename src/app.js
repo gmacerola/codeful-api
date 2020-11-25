@@ -5,6 +5,9 @@ const cors = require("cors");
 const { CLIENT_ORIGIN } = require("./config");
 const helmet = require("helmet");
 const { NODE_ENV } = require("./config");
+const folderRouter = require("./folder/folder-router");
+const noteRouter = require("./note/note-router");
+const userRouter = require("./user/user-router");
 
 const app = express();
 
