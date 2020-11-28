@@ -8,18 +8,20 @@ const { NODE_ENV } = require("./config");
 const folderRouter = require("./folder/folder-router");
 const noteRouter = require("./note/note-router");
 const userRouter = require("./user/user-router");
+const authRouter = require("./auth/auth-router");
 
 const app = express();
 
 const morganOption = NODE_ENV === "production" ? "tiny" : "common";
+app.use(cors());
 
 app.use(morgan(morganOption));
 app.use(helmet());
-app.use(
-  cors({
-    origin: CLIENT_ORIGIN,
-  })
-);
+
+app.use(express.json());
+
+app.use("/api/users", userRouter);
+app.use("/api/auth", authRouter);
 
 app.get("/", (req, res) => {
   res.send("Hello, world!");
