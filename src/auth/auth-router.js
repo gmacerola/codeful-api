@@ -3,6 +3,8 @@ const AuthService = require("./auth-service");
 const authRouter = express.Router();
 const jsonParser = express.json();
 
+authRouter.use(cors({ origin: CLIENT_ORIGIN }));
+
 authRouter.route("/login").post(jsonParser, (req, res, next) => {
   const knexInstance = req.app.get("db");
   const { password, email } = req.body;
