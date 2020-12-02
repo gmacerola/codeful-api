@@ -20,10 +20,10 @@ app.use(helmet());
 
 app.use(express.json());
 
-app.use("/api/users", userRouter);
-app.use("/api/auth", authRouter);
-app.use("/api/folders", folderRouter);
-app.use("/api/notes", noteRouter);
+app.use("api/users", userRouter);
+app.use("api/auth", authRouter);
+app.use("api/folders", folderRouter);
+app.use("api/notes", noteRouter);
 
 app.get("/", (req, res) => {
   res.send("Hello, world!");
