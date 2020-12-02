@@ -11,6 +11,9 @@ const FolderService = {
         return rows[0];
       });
   },
+  getAllFoldersByUser(knex, user_id) {
+    return knex.from("folders").select("*").where({ user_id });
+  },
   getById(knex, id) {
     return knex.from("folders").select("*").where({ id }).first();
   },

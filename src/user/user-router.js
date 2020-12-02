@@ -14,13 +14,11 @@ const serializeUser = (user) => ({
 userRouter
   .route("/")
   .get(requireAuth, (req, res) => {
-    console.log(req.user);
     res.json(serializeUser(req.user));
   })
   .post((req, res) => {
     const knexInstance = req.app.get("db");
     const { password, email } = req.body;
-    console.log({ body: req.body });
     for (const field of ["email", "password"]) {
       if (!req.body[field]) {
         return res.status(400).json({

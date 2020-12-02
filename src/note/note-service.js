@@ -11,6 +11,16 @@ const NoteService = {
         return rows[0];
       });
   },
+  getAllNotesByUser(knex, user_id) {
+    return knex
+      .from("folders")
+      .select("id")
+      .where({ user_id })
+      .then((rows) => {
+        const folderIds = rows.map((r) => r.id);
+        return knex.from("notes").select("*").whereIn("folder_id", folderIds);
+      });
+  },
   getById(knex, id) {
     return knex.from("notes").select("*").where({ id }).first();
   },
